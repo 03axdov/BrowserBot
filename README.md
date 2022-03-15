@@ -1,1 +1,1 @@
-Not intended for commercial use, nor for spamming serverse or other benevolent means.
+Not intended for commercial use, nor for spamming servers etc.
