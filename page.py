@@ -38,7 +38,7 @@ while True:
             driver.find_element(By.NAME, "TimeSearchFirstAvailableButton").click()
         elif dates.index(date[4:]) < current:
             elements = driver.find_elements(by=By.XPATH, value='//*[@id="Main"]/form[2]/div[2]/table/tbody/tr/td/div/div')
-            for day in elements[1:]:
+            for day in elements:
                 if day.text != "Bokad":
                     day.click()
                     break
