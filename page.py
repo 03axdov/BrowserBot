@@ -34,16 +34,16 @@ while True:
     try:
         row = driver.find_elements(by=By.XPATH, value='//*[@id="Main"]/form[2]/div[2]/table/thead/tr/th')
         date = row[1].text
-        if date[5:] not in dates or dates.index(date[4:]) > current:
+        if date[4:] not in dates or dates.index(date[4:]) > current:
             driver.find_element(By.NAME, "TimeSearchFirstAvailableButton").click()
-        elif dates.index(date[5:]) < current:
+        elif dates.index(date[4:]) < current:
             elements = driver.find_elements(by=By.XPATH, value='//*[@id="Main"]/form[2]/div[2]/table/tbody/tr/td/div/div')
             for day in elements[1:]:
                 if day.text != "Bokad":
                     day.click()
                     break
 
-            current = date[5:]
+            current = date[4:]
             driver.find_element(By.NAME, "Next").click()
             driver.find_element(By.NAME, "Next").click()
 
