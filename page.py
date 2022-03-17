@@ -46,6 +46,7 @@ while True:
             current = date[4:]
             driver.find_element(By.NAME, "Next").click()
             driver.find_element(By.NAME, "Next").click()
+            driver.get(PAGE_URL)
 
     except:
         try:
