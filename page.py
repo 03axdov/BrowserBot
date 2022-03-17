@@ -29,14 +29,19 @@ driver.find_element(By.NAME, "TimeSearchFirstAvailableButton").click()
 
 while True:
     row = driver.find_elements(by=By.XPATH, value='//*[@id="Main"]/form[2]/div[2]/table/thead/tr/th')
-    day = row[1].text
-    if day[5:] not in dates:
+    date = row[1].text
+    if date[5:] not in dates:
         driver.refresh()
         continue
-    elif dates.index(day[5:]) < current:
-        elements = driver.find_elements(by=By.XPATH, value='//*[@id="Main"]/form[2]/div[2]/table/tbody/tr/td')
+    elif dates.index(date[5:]) < current:
+        elements = driver.find_elements(by=By.XPATH, value='//*[@id="Main"]/form[2]/div[2]/table/tbody/tr/td/div/div')
         for day in elements[1:]:
-            print(day.text)
+            if day.text != "Bokad":
+                day.click()
+                break
+
+        driver.find_element(By.NAME, "Next").click()
+        break
 
 time.sleep(100000)
 
