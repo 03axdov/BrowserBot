@@ -3,18 +3,18 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 
-BOOKING_NUMBER = ""
-EMAIL = ""
+BOOKING_NUMBER = "630349467"
+EMAIL = "fredrik.thimgren@gmail.com"
 PAGE_URL = "https://bokapass.nemoq.se/Booking/Booking/Index/stockholm"
 
-months = {"apr": 31, "maj": 32, "jun": 31, "jul": 2}
+months = {"apr": 31, "maj": 32, "jun": 31, "jul": 2, "aug": 31}
 
 dates = []
 for key in months.keys():
     for i in range(1, months[key]):
         dates.append(f"{i} {key}")
 
-current = dates.index("1 jul")
+current = dates.index("1 aug")
 
 driver = webdriver.Chrome(ChromeDriverManager().install())
 driver.get(PAGE_URL)
@@ -44,6 +44,7 @@ while True:
                     break
 
             current = date[5:]
+            driver.find_element(By.NAME, "Next").click()
             driver.find_element(By.NAME, "Next").click()
 
     except:
