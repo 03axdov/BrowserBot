@@ -5,8 +5,8 @@ import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-BOOKING_NUMBER = "630349467"
-EMAIL = "fredrik.thimgren@gmail.com"
+BOOKING_NUMBER = ""
+EMAIL = ""
 PAGE_URL = "https://bokapass.nemoq.se/Booking/Booking/Index/stockholm"
 
 months = {"mar": 32,"apr": 31, "maj": 32, "jun": 31, "jul": 32, "aug": 31}
