@@ -34,6 +34,7 @@ while True:
         row = driver.find_elements(by=By.XPATH, value='//*[@id="Main"]/form[2]/div[2]/table/thead/tr/th')
         date = row[1].text
         if date[4:] not in dates or dates.index(date[4:]) > current:
+            time.sleep(5)
             driver.find_element(By.NAME, "TimeSearchFirstAvailableButton").click()
         elif dates.index(date[4:]) < current:
             elements = driver.find_elements(by=By.XPATH, value='//*[@id="Main"]/form[2]/div[2]/table/tbody/tr/td/div/div')
@@ -42,7 +43,7 @@ while True:
                     day.click()
                     break
 
-            current = date[4:]
+            current = dates.index(date[4:])
             driver.find_element(By.NAME, "Next").click()
             driver.find_element(By.NAME, "Next").click()
             driver.get(PAGE_URL)
@@ -51,7 +52,7 @@ while True:
         try:
             login()
         except:
-            time.sleep(65)
+            time.sleep(63)
             driver.find_element(By.NAME, "TimeSearchFirstAvailableButton").click()
 
 
