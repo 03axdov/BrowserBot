@@ -16,7 +16,7 @@ for key in months.keys():
     for i in range(1, months[key]):
         dates.append(f"{i} {key}")
 
-current = dates.index("21 jul")
+current = dates.index("")
 
 driver = webdriver.Chrome(ChromeDriverManager().install())
 driver.get(PAGE_URL)
