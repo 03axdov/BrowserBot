@@ -3,8 +3,8 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 
-BOOKING_NUMBER = "630349467"
-EMAIL = "fredrik.thimgren@gmail.com"
+BOOKING_NUMBER = ""
+EMAIL = ""
 PAGE_URL = "https://bokapass.nemoq.se/Booking/Booking/Index/stockholm"
 
 months = {"mar": 32,"apr": 31, "maj": 32, "jun": 31, "jul": 32, "aug": 31}
