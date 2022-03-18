@@ -2,7 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 import time
-import sys
 
 BOOKING_NUMBER = "630349467"
 EMAIL = "fredrik.thimgren@gmail.com"
@@ -28,30 +27,31 @@ def login():
     driver.find_element(By.NAME, "NextButtonID26").click()
     driver.find_element(By.NAME, "TimeSearchFirstAvailableButton").click()
 
+
 login()
 
 while True:
     try:
         row = driver.find_elements(by=By.XPATH, value='//*[@id="Main"]/form[2]/div[2]/table/thead/tr/th')
         date = row[1].text
-        if date[5:] not in dates or dates.index(date[4:]) > current:
+        if date[4:] not in dates or dates.index(date[4:]) > current:
+            time.sleep(5)
             driver.find_element(By.NAME, "TimeSearchFirstAvailableButton").click()
-        elif dates.index(date[5:]) < current:
+        elif dates.index(date[4:]) < current:
             elements = driver.find_elements(by=By.XPATH, value='//*[@id="Main"]/form[2]/div[2]/table/tbody/tr/td/div/div')
-            for day in elements[1:]:
+            for day in elements:
                 if day.text != "Bokad":
                     day.click()
                     break
 
-            current = date[5:]
+            current = dates.index(date[4:])
             driver.find_element(By.NAME, "Next").click()
             driver.find_element(By.NAME, "Next").click()
+            driver.get(PAGE_URL)
 
     except:
         try:
             login()
         except:
-            time.sleep(65)
+            time.sleep(63)
             driver.find_element(By.NAME, "TimeSearchFirstAvailableButton").click()
-
-
