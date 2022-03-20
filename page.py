@@ -6,8 +6,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import sys
 
-BOOKING_NUMBER = "606680868"
-EMAIL = "0793345454"
+BOOKING_NUMBER = "" # Your booking-number goes here
+EMAIL = ""  # Your email goes here
 PAGE_URL = "https://bokapass.nemoq.se/Booking/Booking/Index/stockholm"
 
 months = {"mar": 32, "apr": 31, "maj": 32, "jun": 31, "jul": 32, "aug": 31, "sep": 31}
@@ -17,7 +17,7 @@ for key in months.keys():
     for i in range(1, months[key]):
         dates.append(f"{i} {key}")
 
-current = dates.index("19 sep")
+current = dates.index("")   # Add the date of your current time withing the quotes. Ex. 21 jan or 3 mar
 
 driver = webdriver.Chrome(ChromeDriverManager().install())
 driver.get(PAGE_URL)
