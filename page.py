@@ -4,19 +4,20 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import sys
 
-BOOKING_NUMBER = ""
-EMAIL = ""
+BOOKING_NUMBER = "606680868"
+EMAIL = "0793345454"
 PAGE_URL = "https://bokapass.nemoq.se/Booking/Booking/Index/stockholm"
 
-months = {"mar": 32,"apr": 31, "maj": 32, "jun": 31, "jul": 32, "aug": 31}
+months = {"mar": 32, "apr": 31, "maj": 32, "jun": 31, "jul": 32, "aug": 31, "sep": 31}
 
 dates = []
 for key in months.keys():
     for i in range(1, months[key]):
         dates.append(f"{i} {key}")
 
-current = dates.index("")
+current = dates.index("19 sep")
 
 driver = webdriver.Chrome(ChromeDriverManager().install())
 driver.get(PAGE_URL)
@@ -32,14 +33,18 @@ def login():
 
 login()
 
+
 while True:
     try:
         row = driver.find_elements(by=By.XPATH, value='//*[@id="Main"]/form[2]/div[2]/table/thead/tr/th')
         date = row[1].text
+        print(date)
         if date[4:] not in dates or dates.index(date[4:]) > current:
             time.sleep(5)
             driver.find_element(By.NAME, "TimeSearchFirstAvailableButton").click()
         elif dates.index(date[4:]) < current:
+            print("Better time")
+            print(date[4:])
             elements = driver.find_elements(by=By.XPATH, value='//*[@id="Main"]/form[2]/div[2]/table/tbody/tr/td/div/div')
             for day in elements:
                 if day.text != "Bokad":
@@ -49,10 +54,16 @@ while True:
             current = dates.index(date[4:])
             driver.find_element(By.NAME, "Next").click()
             driver.find_element(By.NAME, "Next").click()
+            print("Clicked next 2 times")
             WebDriverWait(driver, 10).until(EC.alert_is_present())
             driver.switch_to.alert.accept()
+            print("Accepted notification")
             driver.find_element(By.NAME, "NextButtonID6").click()
             driver.find_element(By.NAME, "NextButtonID26").click()
+            driver.find_element(By.NAME, "TimeSearchFirstAvailableButton").click()
+            print(f"Booked time: {date[4:]}")
+        elif dates.index(date[4:]) == current:
+            time.sleep(5)
             driver.find_element(By.NAME, "TimeSearchFirstAvailableButton").click()
 
     except:
