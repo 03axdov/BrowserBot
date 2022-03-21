@@ -6,6 +6,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import gc
 
+BOOKED_TIME = ""
+
 while True:
     print("Started program")
     BOOKING_NUMBER = "" # Your booking-number goes here
@@ -20,7 +22,7 @@ while True:
         for i in range(1, months[key]):
             dates.append(f"{i} {key}")
 
-    current = dates.index("")   # Add the date of your current time withing the quotes. Ex. 21 jan or 3 mar
+    current = dates.index(BOOKED_TIME)   # Add the date of your current time withing the quotes. Ex. 21 jan or 3 mar
 
     driver = webdriver.Chrome(ChromeDriverManager().install())
     driver.get(PAGE_URL)
@@ -51,7 +53,8 @@ while True:
                         day.click()
                         break
 
-                current = dates.index(date[4:])
+                BOOKED_TIME = date[4:]
+                current = dates.index(BOOKED_TIME)
                 driver.find_element(By.NAME, "Next").click()
                 driver.find_element(By.NAME, "Next").click()
                 print("Clicked next 2 times")
