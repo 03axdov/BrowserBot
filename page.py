@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import gc
 
 while True:
+    print("Started program")
     BOOKING_NUMBER = "" # Your booking-number goes here
     EMAIL = ""  # Your email goes here
     PAGE_URL = "https://bokapass.nemoq.se/Booking/Booking/Index/stockholm"
@@ -38,7 +39,6 @@ while True:
         try:
             row = driver.find_elements(by=By.XPATH, value='//*[@id="Main"]/form[2]/div[2]/table/thead/tr/th')
             date = row[1].text
-            print(date)
             if date[4:] not in dates or dates.index(date[4:]) > current:
                 time.sleep(5)
                 driver.find_element(By.NAME, "TimeSearchFirstAvailableButton").click()
@@ -72,6 +72,7 @@ while True:
             except:
                 ITER += 1
                 if ITER == 50:
+                    print("ITER == 50")
                     gc.collect()
                     break
                 time.sleep(63)
