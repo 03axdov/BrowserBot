@@ -8,9 +8,9 @@ import gc
 
 gc.enable()
 
-BOOKED_TIME = ""    # Add date of your current time, Ex. 21 jul or 3 mar
-BOOKING_NUMBER = "" # Your booking-number goes here
-EMAIL = ""  # Your email goes here
+BOOKED_TIME = "1 jun"    # Add date of your current time, Ex. 21 jul or 3 mar
+BOOKING_NUMBER = "720243218" # Your booking-number goes here
+EMAIL = "axel.dovskog@outlook.com"  # Your email / phone number goes here
 PAGE_URL = "https://bokapass.nemoq.se/Booking/Booking/Index/stockholm"
 
 months = {"mar": 32, "apr": 31, "maj": 32, "jun": 31, "jul": 32, "aug": 31, "sep": 31}
@@ -71,6 +71,7 @@ while True:
         try:
             login()
         except:
+            print("sleep")
             time.sleep(63)
             try:
                 driver.find_element(By.NAME, "TimeSearchFirstAvailableButton").click()
