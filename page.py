@@ -51,8 +51,7 @@ while True:
                     day.click()
                     break
 
-            BOOKED_TIME = date[4:]
-            current = dates.index(BOOKED_TIME)
+            current = dates.index(data[4:])
             driver.find_element(By.NAME, "Next").click()
             driver.find_element(By.NAME, "Next").click()
             print("Clicked next 2 times")
